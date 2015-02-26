@@ -3,17 +3,10 @@ var Chart = require('./chart.js');
 var $ = require("jquery");
 
 
-var sampleData = [
-  {id: '5fbmzmtc', x: 7, y: 41, z: 6},
-  {id: 's4f8phwm', x: 11, y: 45, z: 9},
-  {id: 's4f8phiw', x: 51, y: 145, z: 9}
-];
-
 var app = React.createClass({
     getInitialState: function () {
       return {
-          data: sampleData,
-          domain: {x: [0, 30], y: [0,100]}
+          data: null,
         }
     },
     handleResize: function () {
@@ -30,7 +23,8 @@ var app = React.createClass({
                 trans = datajp.map(function (x) {
                     x['x'] = x['n_followers_count'];
                     x['y'] = x['n_listed_count'];
-                    x['z'] = 1;
+                    x['z'] = x['authority'];
+                    x['w'] = x['sentiment'];
                     return x;
                 });
                 that.setState({data:trans});
@@ -42,7 +36,6 @@ var app = React.createClass({
             <div className="App">
                 <Chart 
                     data={this.state.data}
-                    domain={this.state.domain}
                     />
             </div>
             );

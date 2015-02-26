@@ -4,13 +4,20 @@ var d3Chart = require("./d3chart.js");
 var Chart = React.createClass({
     propTypes: {
         data: React.PropTypes.array,
-        domain: React.PropTypes.object
     },
     componentDidMount: function () {
         var el = this.getDOMNode();
+        var w = el.clientWidth;
+console.log(w);
         d3Chart.create(el,{
-            width: '100%',
-            height: '300px'},
+            width: w,
+            height: '300',
+            margin: {
+                top: 20,
+                bottom: 20,
+                left: 20,
+                right: 20}
+            },
             this.getChartState()
             );
     },
@@ -20,8 +27,7 @@ var Chart = React.createClass({
     },
     getChartState : function () {
         return {
-            data: this.props.data,
-            domain: this.props.domain
+            data: this.props.data
         };
     },
     componentWillUnmount:  function (){
