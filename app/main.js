@@ -16,15 +16,15 @@ var app = React.createClass({
         window.addEventListener('resize', this.handleResize);
         var that = this;
         $.ajax({
-            url: 'http://127.0.0.1:5000/tweets?query=vancouver',
-            dataType: 'jsonp',
+            url: 'sample.json',
+            dataType: 'json',
             success: function(datajp){
                 console.log(datajp);
-                trans = datajp.map(function (x) {
-                    x['x'] = x['n_followers_count'];
-                    x['y'] = x['n_listed_count'];
-                    x['z'] = x['authority'];
-                    x['w'] = x['sentiment'];
+                trans = datajp.statuses.map(function (x) {
+                    x['x'] = x['retweet_count'];
+                    x['y'] = x['retweet_count'];
+                    x['z'] = 10;
+                    x['w'] = 2;
                     return x;
                 });
                 that.setState({data:trans});

@@ -53,7 +53,7 @@ d3Chart._drawAxis = function(el, scales) {
       .attr("x", this.props.width)
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text("Calories");
+      .text("X Axis");
 
   // y-axis
   svg.append("g")
@@ -65,7 +65,7 @@ d3Chart._drawAxis = function(el, scales) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Protein (g)");
+      .text("Y Axis");
 }
 
 d3Chart._drawPoints = function(el, scales, data) {
