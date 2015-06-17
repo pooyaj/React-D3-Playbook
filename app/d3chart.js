@@ -4,11 +4,11 @@ var d3Chart = {};
 d3Chart.props = {};
 
 d3Chart.create = function(el, props, state) {
+  this.props = props;
   var svg = d3.select(el).append('svg')
       .attr('class', 'd3')
       .attr('width', props.width)
       .attr('height', props.height);
-  this.props = props;
   svg.append('g')
       .attr('class', 'd3-points')
       .attr("transform", "translate(" + props.margin.top + "," + props.margin.left + ")");

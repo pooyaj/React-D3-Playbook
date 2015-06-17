@@ -5,10 +5,14 @@ var Chart = React.createClass({
     propTypes: {
         data: React.PropTypes.array,
     },
+    getInitialState: function () {
+        return {
+            dataLoaded: false
+        };
+    },
     componentDidMount: function () {
         var el = this.getDOMNode();
         var w = el.clientWidth;
-console.log(w);
         d3Chart.create(el,{
             width: w,
             height: '300',
