@@ -13,12 +13,12 @@ var app = React.createClass({
         this.setState({});
     },
     componentDidMount: function() {
-        window.addEventListener('resize', this.handleResize);
         var that = this;
+        window.addEventListener('resize', this.handleResize);
         this.loadData().then(function success(result) {
             that.setState({data:result});
         });
-   },
+    },
     loadData: function () {
         var promise = new Promise(function (resolve, reject) {
             $.ajax({
@@ -32,7 +32,9 @@ var app = React.createClass({
                         x['w'] = 2;
                         return x;
                     });
-                    resolve(trans);
+                    setTimeout(function () {
+                        resolve(trans);    
+                    }, 2000);
                 }
             });
         });
