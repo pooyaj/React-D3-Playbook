@@ -3,7 +3,10 @@ var express = require('express'),
   exphbs = require('express-handlebars'),
   http = require('http'),
   routes = require('./server/routes'),
-  config = require('./server/config');
+  config = require('./server/config'),
+  streamHandler = require('./server/streamHandler'),
+  mongoose = require('mongoose'),
+  twitter = require('twitter');
 
 
 // Create an express instance and set a port variable
@@ -17,6 +20,12 @@ app.set('view engine', 'handlebars');
 // Disable etag headers on responses
 app.disable('etag');
 
+// Connect to our mongo database
+mongoose.connect('mongodb://localhost/react-d3');
+
+// Create a new ntwitter instance
+var twit = new twitter(config.twitter);
+
 // Index Route
 app.get('/', routes.index);
 
@@ -27,3 +36,14 @@ app.use("/", express.static(__dirname + "/server/public/"));
 var server = http.createServer(app).listen(port, function() {
   console.log('Express server listening on port ' + port);
 });
+
+// Initialize socket.io
+var io = require('socket.io').listen(server);
+
+// Set a stream listener for tweets matching tracking keywords
+twit.stream('statuses/filter',{ track: 'nhl'}, function(stream){
+  streamHandler(stream,io);
+});
+
+
+
