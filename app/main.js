@@ -51,6 +51,6 @@ var app = React.createClass({
     }
 });
 
-React.renderComponent(app(), document.body);
+React.render(React.createElement(app), document.body);
 
 
