@@ -1,9 +1,9 @@
 {
-  "name": "my-project",
+  "name": "d3-react",
   "version": "0.0.0",
   "main": "app/main.js",
   "scripts": {
-    "start": "webpack -d"
+    "webpack": "webpack -d"
   },
   "author": "Pooya J",
   "license": "ISC",
@@ -19,7 +19,9 @@
     "twitter": "^1.2.5"
   },
   "devDependencies": {
+    "css-loader": "^0.15.1",
     "node-libs-browser": "^0.5.2",
+    "style-loader": "^0.12.3",
     "webpack": "^1.9.12"
   }
 }

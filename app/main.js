@@ -1,5 +1,6 @@
 var React = require('react');
 var Chart = require('./chart.js');
+require('./styles/main.css');
 var $ = require("jquery");
 
 
